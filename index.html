@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags for responsive layout and character encoding -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts (Dancing Script & Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Floating Chat Button -->
+    <button class="floating-chat-btn" id="floatingChatBtn">
+      <i class="fas fa-comments"></i>
+      <span class="chat-notification-badge" id="chatNotificationCount">3</span>
+    </button>
+
+    <!-- Overlay background shown when chat opens -->
+    <div class="chat-overlay" id="chatOverlay"></div>
+
+    <!-- Main Chat Interface Wrapper -->
+    <div class="chat-interface" id="chatInterface">
+      <!-- Sidebar: Contains chat navigation and lists -->
+      <aside class="sidebar">
+        <!-- Sidebar Header Title -->
+        <div
+          class="sidebar-header d-flex align-items-center justify-content-center"
+        >
+          <h2>Chat Room</h2>
+        </div>
+
+        
+
+        <!-- Sidebar Top Menu (Navigation tabs) -->
+        <div id="topBar" class="top-bar gap-2 p-3">
+          <!-- Sent Requests Tab -->
+          <div
+            class="top-div-area d-flex justify-content-center align-items-center"
+            onclick="swapBox(this, 'sent')"
+          >
+            <p>Sent Request</p>
+          </div>
+
+          <!-- Groups Tab -->
+          <div
+            class="top-div-area d-flex justify-content-center align-items-center"
+            onclick="swapBox(this, 'groups')"
+          >
+            <p>Groups</p>
+          </div>
+
+          <!-- Received Requests Tab -->
+          <div
+            class="top-div-area d-flex justify-content-center align-items-center"
+            onclick="swapBox(this, 'receive')"
+          >
+            <p>Recive Request</p>
+          </div>
+
+          <!-- Connected Chats Tab -->
+          <div
+            class="top-div-area d-flex justify-content-center align-items-center"
+            onclick="swapBox(this, 'connected')"
+          >
+            <p>Chats</p>
+          </div>
+        </div>
+
+        
+
+        <!-- Sidebar Section: Sent Requests, Groups, Receives, Chats -->
+        <div class="sidebar-section">
+          <!-- Section Title -->
+          <h3
+            class="sidebar-toggle"
+            data-target="connected-agents"
+            id="sidebarSectionTitle"
+          >
+            Housbe Members
+          </h3>
+
+          <div id="sentBtn" style="display: none; display: flex; justify-content: center;">
+            <button class="custom-btn sent-btn">Sent request</button>
+          </div>
+
+          <!-- Sent Requests List -->
+          <div
+            class="sidebar-content d-flex flex-column gap-2 collapsed"
+            id="sent-request"
+          >
+            <div class="request-box d-flex flex-column gap-2 shadow-sm">
+              <div
+                class="d-flex justify-content-center align-items-center gap-2"
+              >
+                <div>
+                  <img
+                    src="./assets/profile.png"
+                    alt="Agent"
+                    class="request-avatar"
+                  />
+                </div>
+                <div>
+                  <div class="d-flex flex-column">
+                    <span class="agent-name">Ayaan</span>
+                    <span class="agent-email">ayaankhan@google.com</span>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center gap-2">
+                <button class="custom-btn normal-btn">Withdrow</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Groups Section -->
+          <div
+            class="sidebar-content d-flex flex-column gap-2 collapsed"
+            id="groups"
+          >
+            <div class="group-box d-flex flex-column gap-1">
+              <div><h5 class="agent-name">Kyptronix</h5></div>
+              <div class="d-flex flex-column mb-1">
+                <span class="agent-text"
+                  ><b style="color: #6daceb">Admin</b> Souvik Karmakar
+                  (Agent)</span
+                >
+                <span class="agent-email"
+                  ><span>Created At</span> July 9, 2025 at 9:35 AM</span
+                >
+              </div>
+              <div
+                class="request-box-btn d-flex justify-content-center flex-row gap-2"
+              >
+                <button class="custom-btn warn-btn" title="Delete">
+                  <i class="fas fa-trash-alt me-1"></i>
+                </button>
+                <button class="custom-btn success-btn" title="Add">
+                  <i class="fas fa-user-plus me-1"></i>
+                </button>
+                <button class="custom-btn normal-btn" title="Remove">
+                  <i class="fas fa-user-minus me-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Receive Requests Section -->
+          <div
+            class="sidebar-content d-flex flex-column gap-2 collapsed"
+            id="receive-request"
+          >
+            <div class="request-box d-flex flex-column gap-2 shadow-sm">
+              <div
+                class="d-flex justify-content-center align-items-center gap-2"
+              >
+                <div>
+                  <img
+                    src="./assets/profile.png"
+                    alt="Agent"
+                    class="request-avatar"
+                  />
+                </div>
+                <div>
+                  <div class="d-flex flex-column">
+                    <span class="agent-name">Ayaan</span>
+                    <span class="agent-email">ayaankhan@google.com</span>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center gap-2">
+                <button class="custom-btn success-btn">Accept</button>
+                <button class="custom-btn normal-btn">Reject</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connected Agents (Active Chats) -->
+          <div class="sidebar-content" id="connected-agents">
+            <div
+              class="agent-item d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex align-items-center gap-2">
+                <img
+                  src="./assets/profile.png"
+                  alt="Agent"
+                  class="agent-avatar"
+                />
+                <div class="d-flex flex-column">
+                  <span class="agent-name">Ayaan</span>
+                  <span class="agent-status">Online</span>
+                </div>
+              </div>
+              <div><span class="agent-role">Admin</span></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Chat Area: Right side main panel -->
+      <main class="chat-area">
+        <!-- Chat Header: Displays selected agent info and controls -->
+        <header class="chat-header">
+          <div
+            class="agent-item d-flex justify-content-between align-items-center"
+          >
+            <div class="d-flex align-items-center gap-2">
+              <div class="d-flex flex-column">
+                <span class="agent-name"></span>
+                <span class="agent-status"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Header control buttons -->
+          <div class="header-controls d-flex gap-2">
+            <!-- Toggle Sidebar Button -->
+            <div class="w-btn-area d-flex flex-column gap-2">
+              <button
+                class="w-btn"
+                title="Sent Request"
+                onclick="toggleSidebar()"
+              >
+                <i class="fas fas fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <!-- Toggle Chat Size Button -->
+            <button
+              class="btn-toggle-size"
+              id="btnToggleSize"
+              title="Toggle Size"
+            >
+              <i class="fas fa-compress"></i>
+            </button>
+
+            <!-- Close Chat Button -->
+            <button class="btn-close-chat" id="btnCloseChat" title="Close Chat">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Chat Messages Section -->
+        <div class="chat-messages" id="chatMessages">
+          <!-- user message -->
+          <div class="message user">
+            <div class="message-avatar">
+              <img
+                src="./assets/profile.png"
+                alt="You"
+                class="rounded-circle"
+                width="35"
+                height="35"
+              />
+            </div>
+            <div class="message-content">
+              <div class="message-bubble">
+                Hi ${name}, I need help with my order.
+              </div>
+              <div class="message-time">12:58 PM</div>
+            </div>
+          </div>
+
+          <!-- bot message -->
+
+          <div class="message bot">
+            <div class="message-avatar">
+              <img
+                src="${avatar}"
+                alt="${name}"
+                class="rounded-circle"
+                width="35"
+                height="35"
+              />
+            </div>
+            <div class="message-content">
+              <div class="message-bubble">
+                Hello! I'm ${name}, your virtual assistant. How can I help you
+                today?
+              </div>
+              <div class="message-time">12:58 PM</div>
+            </div>
+          </div>
+
+          <!-- default page -->
+          <div
+            class="chat-landing d-flex flex-column justify-content-center align-items-center"
+            style="
+              height: 100%;
+              padding: 2rem;
+              background-color: var(--bg-dark, #1e3344);
+              color: #fff;
+              display: none !important;
+            "
+          >
+            <img
+              src="./assets/logo.jpg"
+              alt="Chatbot"
+              class="landing-avatar mb-3"
+              style="width: 100px"
+            />
+            <h5 class="text-center">
+              Welcome to <span class="chat-name">Housbe</span> Chat
+            </h5>
+            <p class="text-center empty-state">
+              Select a member to start chatting.
+            </p>
+          </div>
+        </div>
+
+        <!-- Message Input Area -->
+        <div class="chat-input-container">
+          <div
+            class="input-group-custom d-flex align-items-center justify-content-center"
+          >
+            <!-- Textbox to type message -->
+            <input
+              type="text"
+              class="chat-input"
+              id="messageInput"
+              placeholder="Type a message..."
+            />
+
+            <!-- Animated Send Button -->
+            <button class="btn-talk" id="btnTalk">
+              <div class="outline"></div>
+
+              <!-- Default State: Send -->
+              <div class="state state--default">
+                <div class="icon">
+                  <!-- SVG icon of a paper plane -->
+                  <!-- ... SVG contents ... -->
+                </div>
+                <p>
+                  <span style="--i: 0">S</span>
+                  <span style="--i: 1">e</span>
+                  <span style="--i: 2">n</span>
+                  <span style="--i: 3">d</span>
+                </p>
+              </div>
+
+              <!-- Sent State (After clicking send) -->
+              <div class="state state--sent">
+                <p><span style="--i: 0"> </span></p>
+                <div class="icon">
+                  <!-- SVG icon of a check mark -->
+                  <!-- ... SVG contents ... -->
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
