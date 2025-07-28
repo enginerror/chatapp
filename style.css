@@ -562,7 +562,7 @@ body {
 }
 
 .sent-btn {
-  background-color: #70a8e0;
+  background-color: #228bf3;
   color: #eaeaea;
 }
 
@@ -1130,6 +1130,9 @@ body {
 
   .top-div-area p {
     font-size: clamp(9px, 2.5vw, 11px);
+  }
+  .btn-toggle-size {
+    display: none;
   }
 }
 
