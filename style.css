@@ -568,6 +568,11 @@ body {
   color: var(--color-text);
 }
 
+.sent-btn {
+  background-color: #70a8e0;
+  color: var(--color-text);
+}
+
 .chat-name {
   background: linear-gradient(90deg, #ff3e77, #d730d9);
   -webkit-background-clip: text;
@@ -1256,7 +1261,7 @@ body {
   }
 
   .top-div-area p {
-    font-size: clamp(7px, 2vw, 9px);
+    font-size: clamp(8px, 2.2vw, 10px);
   }
 
   .request-box-btn {
