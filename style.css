@@ -527,10 +527,6 @@ body {
 
 .request-box-btn {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(6px, 1.5vw, 8px);
-  justify-content: space-between;
 }
 
 .custom-btn {
@@ -543,9 +539,6 @@ body {
   cursor: pointer;
   box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.3), inset -2px -2px 4px rgba(255, 255, 255, 0.1);
   transform: scale(1.03);
-  flex: 1;
-  min-width: clamp(80px, 45%, 100px);
-  text-align: center;
 }
 
 .custom-btn:active {
@@ -570,7 +563,7 @@ body {
 
 .sent-btn {
   background-color: #70a8e0;
-  color: var(--color-text);
+  color: #eaeaea;
 }
 
 .chat-name {
@@ -1161,10 +1154,7 @@ body {
     padding: clamp(10px, 3vw, 15px);
   }
 
-  .btn-toggle-size {
-    display: none;
-  }
-
+  .btn-toggle-size,
   .btn-close-chat,
   .w-btn {
     width: clamp(28px, 7vw, 32px);
@@ -1209,14 +1199,9 @@ body {
     font-size: clamp(9px, 2.3vw, 10px);
   }
 
-  .request-box-btn {
-    gap: clamp(5px, 1.2vw, 6px);
-  }
-
   .custom-btn {
-    padding: clamp(4px, 1vw, 5px) clamp(10px, 3vw, 15px);
+    padding: clamp(4px, 1vw, 5px) clamp(12px, 3vw, 20px);
     font-size: clamp(9px, 2.3vw, 10px);
-    min-width: clamp(70px, 48%, 90px);
   }
 
   .top-bar {
@@ -1261,16 +1246,7 @@ body {
   }
 
   .top-div-area p {
-    font-size: clamp(8px, 2.2vw, 10px);
-  }
-
-  .request-box-btn {
-    gap: clamp(4px, 1vw, 5px);
-  }
-
-  .custom-btn {
-    min-width: clamp(65px, 48%, 80px);
-    padding: clamp(3px, 0.8vw, 4px) clamp(8px, 2.5vw, 12px);
-    font-size: clamp(8px, 2vw, 9px);
+    /* font-size: clamp(7px, 2vw, 9px); */
+    font-size: clamp(8.5px, 2.2vw, 10px);
   }
 }
